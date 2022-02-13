@@ -14,9 +14,7 @@ function App() {
     setData((prevState) => prevState.filter(tour => tour.id !== id ));
   }
 
-
-
-  useEffect(() => {
+  const fetchData = () => {
     fetch(url)
       .then((res) => {
         if(!res.ok) {
@@ -33,6 +31,10 @@ function App() {
       .catch((err) => {
         console.log(`Error message: ${err}`)
       })
+  }
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
 
@@ -42,9 +44,11 @@ function App() {
         {isLoading && <div className="loading">Loading...</div>}
         {data.length > 0 && <h2>Our Tours</h2>}
         {data.length === 0 && !isLoading && <h2>No Tours Left</h2>}
-        {data && 
+        {data.length > 0 && 
           <TourItems data={data} handleDelete={handleDelete} />
         }
+        {data.length === 0 && !isLoading &&
+          <button className="refresh-btn" onClick={() => fetchData()}>Refresh</button>}
         
       </section>
     </main>

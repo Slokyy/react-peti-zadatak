@@ -2,15 +2,6 @@
 	flex-direction: column;
 	margin: 0 auto;
 	place-items: center;
-	max-width: 40vw;
-}
-
-.tour {
-	width: 40vw;
-}
-
-.tour-img {
-	object-fit: cover;
-	width: 100%;
-	height: 320px;
+	max-width: 620px;
+	gap: 20px;
 }
